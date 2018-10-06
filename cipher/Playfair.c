@@ -10,7 +10,7 @@
 #include "Playfair.h"
 
 void PlayfairEncryption(char PPlaintext[], char Pstr[]){
-    int i,j,k,flag =-1, lennumtext,lenstr,templen, size,numtext[100],numstr[100],cipherkey[5][5];
+    int i,j,k,row1=0,col1=0,row2=0,col2=0,flag =-1, lennumtext,lenstr,templen, size,numtext[100],numstr[100],cipherkey[5][5],numcipher[100];
     for(i=0,j=0;i<strlen(PPlaintext);i++)
     {
         if(PPlaintext[i]!=' ')
@@ -21,7 +21,6 @@ void PlayfairEncryption(char PPlaintext[], char Pstr[]){
         
     }
     PPlaintext[j]='\0';
-    printf("Entered String is %s\n",PPlaintext);
     size = j;
     for(i=0;i<size;i++)
     {
@@ -39,7 +38,6 @@ void PlayfairEncryption(char PPlaintext[], char Pstr[]){
         }
     }
     Pstr[j]='\0';
-    printf("%s\n",Pstr);
     
     k=0;
     for(i=0;i<strlen(Pstr)+26;i++)
@@ -49,7 +47,6 @@ void PlayfairEncryption(char PPlaintext[], char Pstr[]){
             if(Pstr[i]=='J')
             {
                 flag=8;
-                printf("%d",flag);
             }
             numstr[i]=Pstr[i]-'A';
         }
@@ -65,10 +62,7 @@ void PlayfairEncryption(char PPlaintext[], char Pstr[]){
     }
     templen = i;
     lenstr = removerepeated(templen, numstr);
-    for (i=0; i<lenstr; i++) {
-        printf("%c",numstr[i]+'A');
-    }
-    printf("\n");
+    
     k=0;
     for(i=0;i<5;i++)
     {
@@ -78,22 +72,56 @@ void PlayfairEncryption(char PPlaintext[], char Pstr[]){
             k++;
         }
     }
-    for(i=0;i<5;i++)
-    {
-        for(j=0;j<5;j++)
-        {
-            
-            printf("%c ",cipherkey[i][j]+'A');
-            
-        }
-        printf("\n");
-    }
     
     for (i=0; i<lennumtext; i+=2) {
         if(numtext[i]==numtext[i+1])
         {
-            
+            insertelementat(i+1, numtext, lennumtext);
+            lennumtext++;
         }
+    }
+    
+    if (lennumtext%2!=0) {
+        insertelementat(lennumtext, numtext, lennumtext);
+        lennumtext++;
+    }
+    
+    for (k=0; k<lennumtext; k+=2) {
+        for(i=0;i<5;i++){
+            for (j=0; j<5; j++) {
+                if(numtext[k]==cipherkey[i][j])
+                {
+                    row1=i;
+                    col1=j;
+                }
+                if (numtext[k+1] == cipherkey[i][j]) {
+                    row2=i;
+                    col2=j;
+                }
+            }
+        }
+        if(row1==row2)
+        {
+            col1=(col1+1)%5;
+            col2=(col1+1)%5;
+            numcipher[k]=cipherkey[row1][col1];
+            numcipher[k+1]=cipherkey[row2][col2];
+        }
+        if(col1==col2)
+        {
+            row1=(row1+1)%5;
+            row2=(row2+1)%5;
+            numcipher[k]=cipherkey[row1][col1];
+            numcipher[k+1]=cipherkey[row2][col2];
+        }
+        if(row1!=row2&&col1!=col2)
+        {
+            numcipher[k]=cipherkey[row1][col2];
+            numcipher[k+1]=cipherkey[row2][col1];
+        }
+    }
+    for (i=0; i<lennumtext; i++) {
+        printf("%c",numcipher[i]+'A');
     }
 }
 

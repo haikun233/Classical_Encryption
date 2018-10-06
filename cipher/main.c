@@ -27,8 +27,6 @@ int main(int argc, const char * argv[]) {
     printf("5.Row transposition\n");
     printf("6.Product cipher\n");
     printf("******************************************\n");
-    printf("%d",'k');
-    printf("%c",'k'+7);
     while (1) {
         printf("Please enter the corresponding number(1-6):\n");
         scanf("%d",&num);
@@ -46,13 +44,14 @@ int main(int argc, const char * argv[]) {
                 case 2:
                     printf("Enter the string key(in order of a-z):\n");
                     scanf("%s",strkey);
-                    puts("CipherText in Monoalphabetic:");
+                    printf("CipherText in Monoalphabetic:");
                     MonoalphabeticEncryption(Ptext, strkey);
                     printf("\n");
                     break;
                 case 3:
                     printf("Enter the string key:\n");
                     scanf("%s",strkey);
+                    printf("CipherText in Playfair:\n");
                     PlayfairEncryption(Ptext,strkey);
                     printf("\n");
                     break;
