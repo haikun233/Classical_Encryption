@@ -11,4 +11,6 @@
 
 #include <stdio.h>
 
+void CaesarEncryption(char CPlaintext[], int Ckey);
+
 #endif /* Caesar_h */

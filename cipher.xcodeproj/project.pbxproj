@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1D7A46C42160807100DDA65E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D7A46C32160807100DDA65E /* main.c */; };
+		1D7A46CD21631F5F00DDA65E /* Caesar.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D7A46CB21631F5F00DDA65E /* Caesar.c */; };
+		1D7A46D02163213F00DDA65E /* Monoalphabetic.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D7A46CE2163213F00DDA65E /* Monoalphabetic.c */; };
+		1D7A46D321635B3F00DDA65E /* Playfair.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D7A46D121635B3F00DDA65E /* Playfair.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,12 @@
 /* Begin PBXFileReference section */
 		1D7A46C02160807100DDA65E /* cipher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cipher; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D7A46C32160807100DDA65E /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		1D7A46CB21631F5F00DDA65E /* Caesar.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Caesar.c; sourceTree = "<group>"; };
+		1D7A46CC21631F5F00DDA65E /* Caesar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Caesar.h; sourceTree = "<group>"; };
+		1D7A46CE2163213F00DDA65E /* Monoalphabetic.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Monoalphabetic.c; sourceTree = "<group>"; };
+		1D7A46CF2163213F00DDA65E /* Monoalphabetic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Monoalphabetic.h; sourceTree = "<group>"; };
+		1D7A46D121635B3F00DDA65E /* Playfair.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Playfair.c; sourceTree = "<group>"; };
+		1D7A46D221635B3F00DDA65E /* Playfair.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Playfair.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,12 @@
 			isa = PBXGroup;
 			children = (
 				1D7A46C32160807100DDA65E /* main.c */,
+				1D7A46CB21631F5F00DDA65E /* Caesar.c */,
+				1D7A46CC21631F5F00DDA65E /* Caesar.h */,
+				1D7A46CE2163213F00DDA65E /* Monoalphabetic.c */,
+				1D7A46CF2163213F00DDA65E /* Monoalphabetic.h */,
+				1D7A46D121635B3F00DDA65E /* Playfair.c */,
+				1D7A46D221635B3F00DDA65E /* Playfair.h */,
 			);
 			path = cipher;
 			sourceTree = "<group>";
@@ -119,7 +134,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D7A46CD21631F5F00DDA65E /* Caesar.c in Sources */,
+				1D7A46D02163213F00DDA65E /* Monoalphabetic.c in Sources */,
 				1D7A46C42160807100DDA65E /* main.c in Sources */,
+				1D7A46D321635B3F00DDA65E /* Playfair.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

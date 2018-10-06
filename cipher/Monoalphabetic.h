@@ -11,4 +11,11 @@
 
 #include <stdio.h>
 
+struct Mkey {
+    char Mon_Plain;
+    char Mon_Cipher;
+};
+
+void MonoalphabeticEncryption(char MPlaintext[], char Mstr[]);
+
 #endif /* Monoalphabetic_h */
