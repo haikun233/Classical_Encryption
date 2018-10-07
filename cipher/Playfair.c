@@ -6,7 +6,6 @@
 //  Copyright © 2018年 张海鲲. All rights reserved.
 //
 
-#include <string.h>
 #include "Playfair.h"
 
 void PlayfairEncryption(char PPlaintext[], char Pstr[]){

@@ -11,12 +11,15 @@
 #include "Caesar.h"
 #include "Monoalphabetic.h"
 #include "Playfair.h"
+#include "Vernam.h"
+#include "Rowtransposition.h"
+#include "Product.h"
 
 #define SLEN 100
 
 int main(int argc, const char * argv[]) {
     
-    int num=0, numkey = 0;
+    int num=0, numkey = 0, numkeys[100], n=0;
     char strkey[SLEN];
     char Ptext[SLEN];
     printf("******************************************\n");
@@ -56,10 +59,32 @@ int main(int argc, const char * argv[]) {
                     printf("\n");
                     break;
                 case 4:
+                    printf("Enter the string key:\n");
+                    scanf("%s",strkey);
+                    printf("CipherText in Vernam proposed the autokey system:\n");
+                    VernamEncryption(Ptext, strkey);
+                    printf("\n");
                     break;
                 case 5:
+                    printf("Enter the string key:\n");
+                    scanf("%s",strkey);
+                    printf("CipherText in Rowtransposition:\n");
+                    RowtranspositionEncryption(Ptext, strkey);
+                    printf("\n");
                     break;
                 case 6:
+                    printf("Enter the key:\n");
+                    for(int i=0;;i++){
+                        scanf("%d",&numkeys[i]);
+                        n++;
+                        if(getchar()=='\n')break;
+                    }
+                    for (int i=0; i<n; i++) {
+                        strkey[i]=numkeys[i];
+                    }
+                    printf("CipherText in Product Ciphers:\n");
+                    ProductEncryption(Ptext, strkey);
+                    printf("\n");
                     break;
                 default:
                     break;
