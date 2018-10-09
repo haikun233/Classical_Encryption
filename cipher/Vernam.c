@@ -10,6 +10,8 @@
 
 void VernamEncryption(char VPlaintext[], char Vstr[]){
     int i,j,numtext[100],numstr[100],ciphernum[100];
+    
+    //将明文的字符转为大写
     for(i=0,j=0;i<strlen(VPlaintext);i++)
     {
         if(VPlaintext[i]!=' ')
@@ -20,11 +22,13 @@ void VernamEncryption(char VPlaintext[], char Vstr[]){
     }
     VPlaintext[j]='\0';
     
+    //将明文字符用0-25表示
     for(i=0;i<strlen(VPlaintext);i++)
     {
         numtext[i]=VPlaintext[i]-'A';
     }
     
+    //将密钥字符转为大些
     for(i=0,j=0;i<strlen(Vstr);i++)
     {
         if(Vstr[i]!=' ')
@@ -35,10 +39,13 @@ void VernamEncryption(char VPlaintext[], char Vstr[]){
     }
     Vstr[j]='\0';
     
+    //将密钥字符转为0-25表示
     for(i=0;i<strlen(Vstr);i++)
     {
         numstr[i]=Vstr[i]-'A';
     }
+    
+    //将密钥后面接上明文形成新的密钥
     int temp[100];
     for(i=0;i<strlen(VPlaintext);i++){
         if(i<strlen(Vstr))
@@ -47,10 +54,12 @@ void VernamEncryption(char VPlaintext[], char Vstr[]){
             temp[i]=numtext[i-strlen(Vstr)];
     }
     
+    //将明文与密钥进行XOR形成密文
     for (i=0; i<strlen(VPlaintext); i++) {
         ciphernum[i]= (numtext[i] ^ temp[i])%26;
     }
     
+    //打印密文
     for(i=0;i<strlen(VPlaintext);i++)
     {
         printf("%c",ciphernum[i]+'A');

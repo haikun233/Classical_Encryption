@@ -10,6 +10,7 @@
 #define Caesar_h
 
 #include <stdio.h>
+#include <string.h>
 
 void CaesarEncryption(char CPlaintext[], int Ckey);
 

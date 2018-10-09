@@ -7,6 +7,7 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "Caesar.h"
 #include "Monoalphabetic.h"
@@ -17,11 +18,25 @@
 
 #define SLEN 100
 
+int chk_data( char *num )
+{
+    int i;
+    for( i=0;num[i];i++ )
+    {
+        if ( num[i] >'6'|| num[i] <'1' ) //只要有非数字，就返回错误
+            return 0;
+    }
+    if ( i>4 ) //都是数字，但长度超过4位，返回错误
+        return 0;
+    return 1;
+}
+
 int main(int argc, const char * argv[]) {
     
-    int num=0, numkey = 0, numkeys[100], n=0;
-    char strkey[SLEN];
-    char Ptext[SLEN];
+    int numkey = 0, numkeys[100], n=0;
+    char num[SLEN];
+    char Ptext[SLEN];                               //声明明文变量
+    char strkey[SLEN];                              //声明密钥变量
     printf("******************************************\n");
     printf("1.Caesar cipher\n");
     printf("2.Monoalphabetic cipher\n");
@@ -30,13 +45,22 @@ int main(int argc, const char * argv[]) {
     printf("5.Row transposition\n");
     printf("6.Product cipher\n");
     printf("******************************************\n");
-    while (1) {
+    
+    /*
+     输入数字1-6，对应六种不同的加密方法，按照输入的明文和密钥，打印出相应的密文
+     */
+    while ( 1 )
+    {
         printf("Please enter the corresponding number(1-6):\n");
-        scanf("%d",&num);
-        if(num >=1 && num <=6){
+        scanf("%s", num );
+        if ( chk_data( num )==0 )
+        {
+            printf("Sorry,your input is incorrect,please re-enter!!!\n");
+        }
+        else{
             printf("Enter your Plaintext:\n");
             scanf("%s",Ptext);
-            switch (num) {
+            switch (atoi(num)) {
                 case 1:
                     printf("Enter the number key:\n");
                     scanf("%d",&numkey);
@@ -77,7 +101,8 @@ int main(int argc, const char * argv[]) {
                     for(int i=0;;i++){
                         scanf("%d",&numkeys[i]);
                         n++;
-                        if(getchar()=='\n')break;
+                        if(getchar()=='\n')
+                            break;
                     }
                     for (int i=0; i<n; i++) {
                         strkey[i]=numkeys[i];
@@ -90,10 +115,7 @@ int main(int argc, const char * argv[]) {
                     break;
             }
             break;
-        }else{
-            printf("Sorry,your input is incorrect,please re-enter!!!\n");
         }
     }
 }
-
 

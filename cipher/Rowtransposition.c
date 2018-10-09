@@ -12,6 +12,7 @@
 void RowtranspositionEncryption(char RPlaintext[], char Rstr[]){
     int i,j,numtext[100],numstr[100],lennumtext,lennumstr,max=0,row=0,col=0;
     
+    //将明文的字符转为大写
     for(i=0,j=0;i<strlen(RPlaintext);i++)
     {
         if(RPlaintext[i]!=' ')
@@ -22,24 +23,29 @@ void RowtranspositionEncryption(char RPlaintext[], char Rstr[]){
         
     }
     
+    //将明文字符用0-25表示
     for(i=0;i<strlen(RPlaintext);i++)
     {
         numtext[i]=RPlaintext[i]-'A';
     }
     lennumtext = i;
     
+    //将密钥字符用0-9的数字表示
     for (i=0; i<strlen(Rstr); i++) {
         numstr[i] = Rstr[i] - '0';
     }
     lennumstr = i;
+    
+    //找出当中最大的数值
     for (i=0; i<lennumstr; i++) {
         if(numstr[i]>max)
             max=numstr[i];
     }
     
-    row =lennumtext/max +1;
-    col = max;
+    row =lennumtext/max +1;         //矩阵行数
+    col = max;                      //矩阵列数
     
+    //将铭文转为row*col的字符数字矩阵
     int ciphernum[row][col];
     for(i =0;i<row;i++){
         for(j=0;j<col;j++){
@@ -51,25 +57,20 @@ void RowtranspositionEncryption(char RPlaintext[], char Rstr[]){
         }
     }
     
+    //将密钥与列的索引组成结构体数组
     struct Vkey{
         int key;
         int col;
     } vkeys[max];
     int temp1,temp2;
     
+    //将密钥与列数绑定
     for (i=0; i<max; i++) {
         vkeys[i].key=numstr[i];
         vkeys[i].col=i;
     }
     
-    for (i=0; i<max; i++) {
-        printf("%d ",vkeys[i].key);
-    }
-    printf("\n");
-    for (i=0; i<max; i++) {
-        printf("%d ",vkeys[i].col);
-    }
-    printf("\n");
+    //按照密钥从小到大对结构体数组成员进行排序
     for (i=0;i<max;i++){
         for (j=i+1; j<max; j++) {
             if(vkeys[i].key>vkeys[j].key){
@@ -82,28 +83,8 @@ void RowtranspositionEncryption(char RPlaintext[], char Rstr[]){
             }
         }
     }
-    for (i=0; i<max; i++) {
-        printf("%d ",vkeys[i].key);
-    }
-    printf("\n");
-    for (i=0; i<max; i++) {
-        printf("%d ",vkeys[i].col);
-    }
-    printf("\n");
     
-//    for (i=1; i<=max; i++) {
-//        if()
-//    }
-    for(i =0;i<row;i++){
-        for(j=0;j<col;j++){
-            if(i==row-1 && j >=lennumtext % max){
-                printf(" ");
-            }else
-                printf("%c",ciphernum[i][j]+'A');
-        }
-    }
-    printf("\n");
-    
+    //将对应列的字符打印下来
     for (int k=0; k<lennumstr; k++) {
         for (i=0; i<row; i++) {
             if(i==row-1&&vkeys[k].col >= lennumtext%max)
@@ -112,29 +93,4 @@ void RowtranspositionEncryption(char RPlaintext[], char Rstr[]){
                 printf("%c",ciphernum[i][vkeys[k].col] + 'A');
         }
     }
-
-//    for(int k= 0;k<lennumstr;k++){
-//        //printf("%d",numstr[k]);
-//        for (j=0; j<col; j++) {
-//            if(j==numstr[k]-1){
-//                for (i=0; i<row; i++) {
-//                    if(i==row-1 && j >=lennumtext % max)
-//                        printf("");
-//                    else
-//                        printf("%c",ciphernum[i][j]+'A');
-//                }
-//            }
-//        }
-//    }
-    
-//    for (j=0; j<col; j++) {
-//        for (i=0; i<row; i++) {
-//            for (int k=0; k<lennumstr; k++) {
-//                if(j==numstr[k]-1)
-//                {
-//                    printf("%c\n",ciphernum[i][j] + 'A');
-//                }
-//            }
-//        }
-//    }
 }
